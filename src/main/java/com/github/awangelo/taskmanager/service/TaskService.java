@@ -15,6 +15,17 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
+    public void updateTask(Long id, Task updatedTask) {
+        Task existingTask = taskRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid task ID: " + id));
+
+        existingTask.setTitle(updatedTask.getTitle());
+        existingTask.setPriority(updatedTask.getPriority());
+        existingTask.setCompleted(updatedTask.isCompleted());
+
+        taskRepository.save(existingTask);
+    }
+
     public List<Task> findAll() {
         return taskRepository.findAll();
     }

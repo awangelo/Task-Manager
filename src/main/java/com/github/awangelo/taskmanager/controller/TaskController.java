@@ -46,8 +46,7 @@ public class TaskController {
 
     @PostMapping("/edit/{id}")
     public String updateTask(@PathVariable Long id, @ModelAttribute Task task) {
-        task.setId(id);
-        taskService.save(task);
+        taskService.updateTask(id, task);
         return "redirect:/tasks";
     }
 
