@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en-us">
+<head>
+  <title>404</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h1>Página não encontrada</h1>
+  <p th:text="${errorMessage}">A tarefa não foi encontrada.</p>
+  <a href="/tasks" class="btn btn-primary">Voltar à lista de tarefas</a>
+</div>
+</body>
+</html>

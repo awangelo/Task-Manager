@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en-us">
+<head>
+  <title>Update Task</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #e3f2fd;
+      margin: 20px;
+      color: #333;
+    }
+    h1 {
+      color: #1976d2;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .form-control {
+      padding: 10px;
+      width: 100%;
+      max-width: 400px;
+      border: 1px solid #90caf9;
+      border-radius: 6px;
+    }
+    .button {
+      padding: 10px 20px;
+      background-color: #64b5f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .button:hover {
+      background-color: #42a5f5;
+    }
+    .button-secondary {
+      background-color: #90a4ae;
+    }
+    .button-secondary:hover {
+      background-color: #78909c;
+    }
+  </style>
+</head>
+<body>
+<h1>Editar Tarefa</h1>
+<form th:action="@{/tasks/edit/{id}(id=${task.id})}" method="post">
+  <div class="form-group">
+    <label for="title">Título</label>
+    <input type="text" id="title" name="title" class="form-control" th:value="${task.title}" required>
+  </div>
+  <div class="form-group">
+    <label for="priority">Prioridade</label>
+    <select id="priority" name="priority" class="form-control" required>
+      <option value="LOW" th:selected="${task.priority == 'LOW'}">Baixa</option>
+      <option value="MEDIUM" th:selected="${task.priority == 'MEDIUM'}">Média</option>
+      <option value="HIGH" th:selected="${task.priority == 'HIGH'}">Alta</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="completed">Concluída</label>
+    <input type="checkbox" id="completed" name="completed" th:checked="${task.completed}">
+  </div>
+  <button type="submit" class="button">Salvar Alterações</button>
+  <a href="/tasks" class="button button-secondary">Cancelar</a>
+</form>
+</body>
+</html>
