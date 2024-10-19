@@ -11,7 +11,7 @@ RUN mvn clean package -DskipTests
 FROM openjdk:17-jdk-slim
 WORKDIR /app
 
-COPY --from=build /app/target/task-manager.jar task-manager.jar
+COPY --from=build /app/target/Task-Manager-0.0.1-SNAPSHOT.jar task-manager.jar
 EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "task-manager.jar"]
