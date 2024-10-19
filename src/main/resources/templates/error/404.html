@@ -1,14 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en-us">
+<html lang="en-us">
 <head>
-  <title>404</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>404</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #dc3545;
+            font-size: 3.5em;
+            margin-bottom: 30px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-<div class="container mt-5">
-  <h1>Página não encontrada</h1>
-  <p th:text="${errorMessage}">A tarefa não foi encontrada.</p>
-  <a href="/tasks" class="btn btn-primary">Voltar à lista de tarefas</a>
+<div class="container">
+    <h1>404</h1>
+    <a href="/tasks" class="btn">Voltar à lista de tarefas</a>
 </div>
 </body>
 </html>

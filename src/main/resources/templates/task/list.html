@@ -1,106 +1,128 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en-us">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <head>
-  <title>Task List</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #e3f2fd;
-      margin: 20px;
-      color: #333;
-    }
-    h1 {
-      color: #1976d2;
-    }
-    .button {
-      padding: 10px 20px;
-      background-color: #64b5f6;
-      color: white;
-      border: none;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: background-color 0.3s;
-    }
-    .button:hover {
-      background-color: #42a5f5;
-    }
-    .button-warning {
-      background-color: #ffb74d;
-    }
-    .button-warning:hover {
-      background-color: #ffa726;
-    }
-    .button-danger {
-      background-color: #ef5350;
-    }
-    .button-danger:hover {
-      background-color: #e53935;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      background-color: #ffffff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    th, td {
-      padding: 12px;
-      text-align: left;
-    }
-    th {
-      background-color: #bbdefb;
-      color: #333;
-    }
-    td {
-      border-bottom: 1px solid #e0e0e0;
-    }
-    .badge {
-      padding: 6px 10px;
-      color: white;
-      border-radius: 12px;
-      font-size: 0.9em;
-    }
-    .badge-success {
-      background-color: #66bb6a;
-    }
-    .badge-danger {
-      background-color: #ef5350;
-    }
-  </style>
+    <title>Task List</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e3f2fd;
+            margin: 20px;
+            color: #333;
+        }
+
+        h1 {
+            color: #1976d2;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #64b5f6;
+            color: white;
+            border: none;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #42a5f5;
+        }
+
+        .button-warning {
+            background-color: #ffb74d;
+        }
+
+        .button-warning:hover {
+            background-color: #ffa726;
+        }
+
+        .button-danger {
+            background-color: #ef5350;
+        }
+
+        .button-danger:hover {
+            background-color: #e53935;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #bbdefb;
+            color: #333;
+        }
+
+        td {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .badge {
+            padding: 6px 10px;
+            color: white;
+            border-radius: 12px;
+            font-size: 0.9em;
+        }
+
+        .badge-success {
+            background-color: #66bb6a;
+        }
+
+        .badge-danger {
+            background-color: #ef5350;
+        }
+    </style>
 </head>
 <body>
-<h1>Lista de Tarefas</h1>
-<a href="/tasks/create" class="button">Criar Nova Tarefa</a>
-
+<div class="header">
+    <h1>Lista de Tarefas</h1>
+    <a href="/tasks/create" class="button">Criar Nova Tarefa</a>
+</div>
 <table>
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Título</th>
-    <th>Prioridade</th>
-    <th>Concluída</th>
-    <th>Ações</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="task : ${tasks}">
-    <td th:text="${task.id}"></td>
-    <td th:text="${task.title}"></td>
-    <td th:text="${task.priority}"></td>
-    <td>
-      <span th:if="${task.completed}" class="badge badge-success">Sim</span>
-      <span th:if="${!task.completed}" class="badge badge-danger">Não</span>
-    </td>
-    <td>
-      <a th:href="@{/tasks/edit/{id}(id=${task.id})}" class="button button-warning">Editar</a>
-      <form th:action="@{/tasks/delete/{id}(id=${task.id})}" method="post" style="display:inline;">
-        <button type="submit" class="button button-danger">Deletar</button>
-      </form>
-    </td>
-  </tr>
-  </tbody>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Prioridade</th>
+        <th>Concluída</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="task : ${tasks}">
+        <td th:text="${task.id}"></td>
+        <td th:text="${task.title}"></td>
+        <td th:text="${task.priority}"></td>
+        <td>
+            <span th:if="${task.completed}" class="badge badge-success">Sim</span>
+            <span th:if="${!task.completed}" class="badge badge-danger">Não</span>
+        </td>
+        <td>
+            <a th:href="@{/tasks/edit/{id}(id=${task.id})}" class="button button-warning">Editar</a>
+            <form th:action="@{/tasks/delete/{id}(id=${task.id})}" method="post" style="display:inline;">
+                <button type="submit" class="button button-danger">Deletar</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
 </table>
 </body>
 </html>
